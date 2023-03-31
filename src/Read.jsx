@@ -1,0 +1,70 @@
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import{Button}from '@mui/material';
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
+export function Read() {
+  const [data, setdata] = useState([]);
+  const navigate = useNavigate();
+
+
+ const deleteData = async (id)=>{
+  await fetch(`https://64231d3577e7062b3e2b6783.mockapi.io/crud2/${id}`,{
+    method:"DELETE"
+  })
+  getData();
+ }
+  const getData = () => {
+    fetch("https://64231d3577e7062b3e2b6783.mockapi.io/crud2", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setdata(data));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <div className="read">
+      <h1 className="heading">Students List</h1>
+    <TableContainer component={Paper} elevation={3}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Age</TableCell>
+            <TableCell>Gender</TableCell>
+            <TableCell>Qualification</TableCell>
+            <TableCell>Place</TableCell>
+            <TableCell>Update</TableCell>
+            <TableCell>Delete</TableCell>
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((data) => (
+            <TableRow key={data.name}>
+              <TableCell> {data.name}</TableCell>
+              <TableCell>{data.age}</TableCell>
+              <TableCell>{data.gender}</TableCell>
+              <TableCell>{data.qualification}</TableCell>
+              <TableCell>{data.place}</TableCell>
+              <TableCell><Button onClick={()=>deleteData(data.id)}>Delete</Button></TableCell>
+              <TableCell><Button onClick={()=>navigate(`/create/update/${data.id}`)}>Update</Button></TableCell>
+
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </div>
+  );
+}
