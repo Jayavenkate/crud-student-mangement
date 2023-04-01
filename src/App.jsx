@@ -1,5 +1,6 @@
 // https://64231d3577e7062b3e2b6783.mockapi.io/crud2
 import "./App.css";
+
 import { Create } from "./Create";
 import { Read } from "./Read";
 import AppBar from "@mui/material/AppBar";
@@ -51,9 +52,9 @@ function Home() {
   const navigate = useNavigate();
   return (
     <div className="home">
-      <h1>Click below the button</h1>
-      <button onClick={() => navigate("/create")}>Student</button>
-      <button onClick={() => navigate("/addteacher")}>Teacher</button>
+      <h1>Click below the button 👇</h1>
+      <Button onClick={() => navigate("/create")} variant="contained">Student</Button>
+      <Button onClick={() => navigate("/addteacher")} variant="contained">Teacher</Button>
     </div>
   );
 }

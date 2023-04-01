@@ -1,64 +1,64 @@
-
+import Button from "@mui/material/Button";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
-export function  AddTeacher() {
+export function AddTeacher() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [qualification, setQualification] = useState("");
   const [place, setPlace] = useState("");
   const navigate = useNavigate();
-const postData = async()=>{
-const newData={
-  name:name,
-  age:age,
-  gender:gender,
-  qualification:qualification,
-  place:place,
-}
-// console.log(newData);
-await fetch("https://6426ccefd24d7e0de47894db.mockapi.io/teacher",{
-  method:"POST",
-  body:JSON.stringify(newData),
-  headers:{"Content-Type":"application/json",},
-})
-navigate("/teacherlist");
-}
+  const postData = async () => {
+    const newData = {
+      name: name,
+      age: age,
+      gender: gender,
+      qualification: qualification,
+      place: place,
+    };
+    // console.log(newData);
+    await fetch("https://6426ccefd24d7e0de47894db.mockapi.io/teacher", {
+      method: "POST",
+      body: JSON.stringify(newData),
+      headers: { "Content-Type": "application/json" },
+    });
+    navigate("/teacherlist");
+  };
   return (
     <div className="add-student">
       <h1>Add Teacher Details</h1>
-      <input
+
+      <TextField
         onChange={(event) => setName(event.target.value)}
-        value={name}
-        type="text"
-        placeholder="Name"
+        label="Name"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setAge(event.target.value)}
-        value={age}
-        type="text"
-        placeholder="Age"
+        label="Age"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setGender(event.target.value)}
-        value={gender}
-        type="text"
-        placeholder="Gender"
+        label="Gender"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setQualification(event.target.value)}
-        value={qualification}
-        type="text"
-        placeholder="Qualification"
+        label="Qualification"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setPlace(event.target.value)}
-        value={place}
-        type="text"
-        placeholder="Place"
+        label="Place"
+        variant="outlined"
       />
-      <button onClick={postData}>Add Teacher</button>
+
+      <Button onClick={postData} variant="contained">
+        Add Teacher
+      </Button>
     </div>
   );
 }

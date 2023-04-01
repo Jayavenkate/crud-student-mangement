@@ -1,6 +1,4 @@
-// export function TeacherList() {
-//   return <div>TeacherList</div>;
-// }
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,6 +9,8 @@ import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export function TeacherList() {
   const [data, setdata] = useState([]);
@@ -52,15 +52,15 @@ export function TeacherList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((data) => (
-              <TableRow key={data.name}>
+            {data.map((data,index) => (
+              <TableRow key={index}>
                 <TableCell> {data.name}</TableCell>
                 <TableCell>{data.age}</TableCell>
                 <TableCell>{data.gender}</TableCell>
                 <TableCell>{data.qualification}</TableCell>
                 <TableCell>{data.place}</TableCell>
                 <TableCell>
-                  <Button onClick={() => deleteData(data.id)}>Delete</Button>
+                  <Button onClick={() => deleteData(data.id)} color="error"><DeleteIcon /></Button>
                 </TableCell>
                 <TableCell>
                   <Button
@@ -68,7 +68,7 @@ export function TeacherList() {
                       navigate(`/addteacher/editteacher/${data.id}`)
                     }
                   >
-                  Edit
+                  <EditIcon />
                   </Button>
                 </TableCell>
               </TableRow>

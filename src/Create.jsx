@@ -1,5 +1,8 @@
 import { useState } from "react";
+import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import TextField from "@mui/material/TextField";
+
 export function Create() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -26,37 +29,32 @@ navigate("/read");
   return (
     <div className="add-student">
       <h1>Add Students Details</h1>
-      <input
+      <TextField
         onChange={(event) => setName(event.target.value)}
-        value={name}
-        type="text"
-        placeholder="Name"
+        label="Name"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setAge(event.target.value)}
-        value={age}
-        type="text"
-        placeholder="Age"
+        label="Age"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setGender(event.target.value)}
-        value={gender}
-        type="text"
-        placeholder="Gender"
+        label="Gender"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setQualification(event.target.value)}
-        value={qualification}
-        type="text"
-        placeholder="Qualification"
+        label="Qualification"
+        variant="outlined"
       />
-      <input
+      <TextField
         onChange={(event) => setPlace(event.target.value)}
-        value={place}
-        type="text"
-        placeholder="Place"
+        label="Place"
+        variant="outlined"
       />
-      <button onClick={postData}>Add Student</button>
+      <Button onClick={postData} variant="contained">Add Student</Button>
     </div>
   );
 }
